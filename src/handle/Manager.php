@@ -11,7 +11,8 @@ namespace st\handle;
 class Manager
 {
     protected static $classes = [
-        Namespace_::class
+        Namespace_::class,
+        Use_::class
     ];
     /**
      * @return Manager
@@ -53,7 +54,8 @@ class Manager
                 if($handler->hit($stmt)) {
                     $handler->handle();
                     $sons = $handler->getSons();
-                    $this->handle($sons);
+                    if($sons != null)
+                        $this->handle($sons);
                 }
             }
         }

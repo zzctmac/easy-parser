@@ -20,7 +20,7 @@ class StmtsTest extends PHPUnit_Framework_TestCase
     {
         $stmtParse = new \st\parse\Stmts(__DIR__ . '/../normal.php', $this->parser);
         $namespace = $stmtParse->getNameSpace();
-        $this->assertEquals('co', $namespace->name);
+        $this->assertEquals('co', $namespace);
     }
 
     public function test_import_class()

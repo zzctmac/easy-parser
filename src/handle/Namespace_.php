@@ -33,6 +33,6 @@ class Namespace_ extends Base
      */
     public function getSons()
     {
-        return [];
+        return $this->node->stmts;
     }
 }

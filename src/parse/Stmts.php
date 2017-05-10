@@ -29,13 +29,13 @@ class Stmts extends Base
 
 
     /**
-     * @return null|Namespace_
+     * @return null|string
      */
     public function getNameSpace()
     {
         $ns =  $this->manager->getContainer()->namespaces;
         if(count($ns) > 0)
-            return $ns[0];
+            return $ns[0]->name;
         return null;
     }
 
@@ -51,7 +51,7 @@ class Stmts extends Base
 
     public function getAllImportClasses()
     {
-        // TODO: Implement getAllImportClasses() method.
+        return $this->manager->getContainer()->importClasses;
     }
 
     public function getClassNameByAlias($alias)
