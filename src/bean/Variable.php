@@ -8,32 +8,24 @@
 namespace st\bean;
 
 
-use PhpParser\Node\Expr\Assign;
-use PhpParser\Node\Expr\New_;
-use st\parse\IBase;
-
 class Variable
 {
     public $name;
     public $type;
 
     /**
-     * @param $assign Assign
-     * @param $parse IBase
-     * @return Variable
+     * Variable constructor.
+     * @param $name
+     * @param $type
      */
-    public static function createFromAssign($assign, $parse)
+    public function __construct($name, $type)
     {
-        $that = new self();
-        $that->name = $assign->var->name;
-        switch (get_class($assign->expr)) {
-            case New_::class:
-                $parts = $assign->expr->class->parts;
-                $that->type = $parse->getClassNameByAlias($parts);
-                break;
-            default:
-                $that->type = null;
-        }
-        return $that;
+        $this->name = $name;
+        $this->type = $type;
+    }
+
+    public static function create($name, $type)
+    {
+        return new self($name, $type);
     }
 }
