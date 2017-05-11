@@ -46,7 +46,7 @@ class Stmts extends Base
 
     public function getAllVars()
     {
-        // TODO: Implement getAllVars() method.
+        return $this->manager->getContainer()->variables;
     }
 
     public function getAllImportClasses()

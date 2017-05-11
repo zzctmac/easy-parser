@@ -12,7 +12,8 @@ class Manager
 {
     protected static $classes = [
         Namespace_::class,
-        Use_::class
+        Use_::class,
+        Assign::class
     ];
     /**
      * @return Manager

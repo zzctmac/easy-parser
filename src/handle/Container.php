@@ -17,7 +17,13 @@ class Container
 {
     public $calls = [];
     public $variables = [];
+    /**
+     * @var ImportClass[]
+     */
     public $importClasses = [];
+    /**
+     * @var NamespaceBean[]
+     */
     public $namespaces = [];
 
     public function addCall(Call $call)
@@ -27,7 +33,10 @@ class Container
 
     public function addVariable(Variable $variable)
     {
-        $this->variables[] = $variable;
+        if($variable->isObject) {
+            $variable->type = $this->findClassByAlias($variable->type);
+        }
+        $this->variables[$variable->name] = $variable;
     }
 
     public function addImportClasses(ImportClass $importClass)
@@ -38,5 +47,13 @@ class Container
     public function addNamespace(NamespaceBean $n)
     {
         $this->namespaces[] = $n;
+    }
+
+    public function findClassByAlias($alias) {
+        foreach ($this->importClasses as $n) {
+            if($n->alias === $alias)
+                return $n->name;
+        }
+        return$alias;
     }
 }
