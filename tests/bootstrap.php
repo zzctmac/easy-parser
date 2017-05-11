@@ -5,4 +5,4 @@
  * Time: 10:34
  */
 
-include __DIR__ . '/vendor/autoload.php';
+include __DIR__ . '/../vendor/autoload.php';
