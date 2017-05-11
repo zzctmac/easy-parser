@@ -12,11 +12,11 @@
          syntaxCheck="true"
          verbose="true"
 >
-   <!-- <testsuites>
+   <testsuites>
         <testsuite name="func">
             <directory suffix="Test.php">./tests/func</directory>
         </testsuite>
-    </testsuites>-->
+    </testsuites>
     <php>
         <!--
         <env name="REDIS_HOST" value="127.0.0.1" />
