@@ -39,6 +39,7 @@ class StmtsTest extends PHPUnit_Framework_TestCase
 
     public function test_call()
     {
+        $this->assertEquals(1,2);
         $stmtParse = new \st\parse\Stmts(__DIR__ . '/../normal.php', $this->parser);
         /*$vars = $stmtParse->getAllVars();
         $this->assertEquals('c\\h\\Y', $vars['y']->type);*/
