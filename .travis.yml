@@ -10,4 +10,4 @@ cache:
 before_install:
   - travis_retry composer self-update
 before_script: travis_retry composer install
-script: phpunit
+script: vendor/bin/phpunit
