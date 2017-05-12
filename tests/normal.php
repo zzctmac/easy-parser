@@ -4,7 +4,7 @@ namespace co;
 use b\A;
 use c\h\Y;
 
-$y = new Y;
+$y = new Y(1);
 $y->e('zzc',2);
 
 g\ed();

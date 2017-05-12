@@ -19,4 +19,23 @@ class Arg
 
     public $type;
     public $name;
+
+    /**
+     * Arg constructor.
+     * @param $type
+     * @param $name
+     */
+    public function __construct($type, $name)
+    {
+        $this->type = $type;
+        $this->name = $name;
+    }
+
+    public static function create($type, $name)
+    {
+        return new self($type, $name);
+    }
+
+
+
 }

@@ -42,4 +42,5 @@ abstract class Base implements IBase
         return false;
     }
 
+
 }

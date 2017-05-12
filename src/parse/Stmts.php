@@ -11,7 +11,6 @@ namespace st\parse;
 
 
 use st\bean\Call;
-use st\bean\Namespace_;
 use st\handle\Manager;
 
 class Stmts extends Base

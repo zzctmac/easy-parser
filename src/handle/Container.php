@@ -16,6 +16,9 @@ use st\bean\Namespace_ as NamespaceBean;
 class Container
 {
     public $calls = [];
+    /**
+     * @var Variable[]
+     */
     public $variables = [];
     /**
      * @var ImportClass[]

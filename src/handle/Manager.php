@@ -14,7 +14,8 @@ class Manager
         Namespace_::class,
         Use_::class,
         Assign::class,
-        New_::class
+        New_::class,
+        MethodCall::class
     ];
     /**
      * @return Manager

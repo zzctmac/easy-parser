@@ -12,7 +12,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\New_ as ExprNew;
 use st\bean\Call;
 
-class New_ extends Base
+class New_ extends WithArg
 {
 
     /**
@@ -26,7 +26,7 @@ class New_ extends Base
      */
     public function handle()
     {
-        $call = Call::createByNew($this->container->findClassByAlias($this->node->class->toString()), []);
+        $call = Call::createByNew($this->container->findClassByAlias($this->node->class->toString()), parent::handle());
         $this->container->addCall($call);
     }
 

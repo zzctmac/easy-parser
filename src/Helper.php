@@ -15,4 +15,11 @@ class Helper
         return implode("\\", $parts);
     }
 
+
+    public static function getArgBeans($args)
+    {
+
+    }
+
+
 }

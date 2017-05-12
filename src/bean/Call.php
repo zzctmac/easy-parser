@@ -24,6 +24,9 @@ class Call
     public $object;
     public $isNew;
     public $name;
+    /**
+     * @var Arg[]
+     */
     public $args;
 
     /**
@@ -71,6 +74,11 @@ class Call
     public static function createByNew($class, $args, $name = null)
     {
         return self::create(false, $class, false, null, true, $class ? $class->name:$name, $args);
+    }
+
+    public static function createByMethodCall($class, $object, $name, $args)
+    {
+        return self::create(true, $class, false, $object, false, $name, $args);
     }
 
 
