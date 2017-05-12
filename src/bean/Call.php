@@ -16,72 +16,63 @@ use st\parse\IBase;
 class Call
 {
     public $isMethod;
+    /**
+     * @var ImportClass
+     */
     public $class;
     public $isStatic;
     public $object;
+    public $isNew;
     public $name;
     public $args;
 
     /**
-     * @param $call MethodCall
-     * @param $parse IBase
-     * @return self[]
+     * Call constructor.
+     * @param $isMethod
+     * @param $class ImportClass
+     * @param $isStatic
+     * @param $object
+     * @param $isNew
+     * @param $name
+     * @param $args
      */
-    public static function createFromExprMethodCall($call, $parse)
+    public function __construct($isMethod, $class, $isStatic, $object, $isNew, $name, $args)
     {
-        $res = [];
-        $that = new self();
-        $that->isStatic = false;
-        $that->isMethod = true;
-        $that->name = $call->name;
-        $that->args = self::parseArgs($call->args);
-        switch (get_class($call->var)){
-            case \PhpParser\Node\Expr\Variable::class:
-                $that->object = $call->var->name;
-                $that->class = $parse->getClassNameByVar($call->var->name);
-                break;
-            case StaticCall::class:
-                $res[] = self::createFromExprStaticCall($call->var, $parse);
-                break;
-            default:
-                break;
-        }
-        $res[] = $that;
-        return $res;
-
+        $this->isMethod = $isMethod;
+        $this->class = $class;
+        $this->isStatic = $isStatic;
+        $this->object = $object;
+        $this->isNew = $isNew;
+        $this->name = $name;
+        $this->args = $args;
     }
 
     /**
-     * @param $call StaticCall
-     * @param $parse IBase
-     * @return self[]
+     * @param $isMethod
+     * @param $class ImportClass
+     * @param $isStatic
+     * @param $object
+     * @param $isNew
+     * @param $name
+     * @param $args
+     * @return Call
      */
-    public static function createFromExprStaticCall($call, $parse)
+    public static function create($isMethod, $class, $isStatic, $object, $isNew, $name, $args)
     {
-
+        return new self($isMethod, $class, $isStatic, $object, $isNew, $name, $args);
     }
 
     /**
-     * @param $args \PhpParser\Node\Arg[]
-     * @return array
+     * @param $class ImportClass
+     * @param $args
+     * @param $name
+     * @return Call
      */
-    private static function parseArgs($args)
+    public static function createByNew($class, $args, $name = null)
     {
-        $calls = [];
-        $res = [];
-        foreach ($args as $arg)
-        {
-            $item = new Arg();
-            do {
-                if($arg->value instanceof Scalar) {
-                    $item->type = Arg::SCALAR;
-                    $item->name = $arg->value->value;
-                    break;
-                }
-
-            }while(false);
-        }
-
-        return [$calls, $res];
+        return self::create(false, $class, false, null, true, $class ? $class->name:$name, $args);
     }
+
+
+
 }

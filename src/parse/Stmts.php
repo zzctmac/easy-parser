@@ -10,6 +10,7 @@ namespace st\parse;
 
 
 
+use st\bean\Call;
 use st\bean\Namespace_;
 use st\handle\Manager;
 
@@ -39,9 +40,13 @@ class Stmts extends Base
         return null;
     }
 
+    /**
+     * @return Call[]
+     */
     public function getAllUsedFunctions()
     {
-        // TODO: Implement getAllUsedFunctions() method.
+        $ns =  $this->manager->getContainer()->calls;
+        return $ns;
     }
 
     public function getAllVars()

@@ -10,37 +10,40 @@ class StmtsTest extends PHPUnit_Framework_TestCase
 {
 
     protected $parser;
+    /**
+     * @var \st\parse\Stmts
+     */
+    protected $stmtParse;
 
     protected function setUp()
     {
         $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);
+        $this->stmtParse = new \st\parse\Stmts(__DIR__ . '/../normal.php', $this->parser);
     }
 
     public function test_namespace()
     {
-        $stmtParse = new \st\parse\Stmts(__DIR__ . '/../normal.php', $this->parser);
-        $namespace = $stmtParse->getNameSpace();
+        $namespace = $this->stmtParse->getNameSpace();
         $this->assertEquals('co', $namespace);
     }
 
     public function test_import_class()
     {
-        $stmtParse = new \st\parse\Stmts(__DIR__ . '/../normal.php', $this->parser);
-        $classes = $stmtParse->getAllImportClasses();
+        $classes = $this->stmtParse->getAllImportClasses();
         $this->assertEquals('A', $classes[0]->alias);
     }
 
     public function test_vars()
     {
-        $stmtParse = new \st\parse\Stmts(__DIR__ . '/../normal.php', $this->parser);
-        $vars = $stmtParse->getAllVars();
+        $vars = $this->stmtParse->getAllVars();
         $this->assertEquals('c\\h\\Y', $vars['y']->type);
     }
 
     public function test_call()
     {
-        $stmtParse = new \st\parse\Stmts(__DIR__ . '/../normal.php', $this->parser);
-        /*$vars = $stmtParse->getAllVars();
-        $this->assertEquals('c\\h\\Y', $vars['y']->type);*/
+        $fs = $this->stmtParse->getAllUsedFunctions();
+        $this->assertEquals(true, $fs[0]->isNew);
+        $this->assertEquals('c\\h\\Y', $fs[0]->class->name);
+
     }
 }

@@ -34,7 +34,7 @@ class Container
     public function addVariable(Variable $variable)
     {
         if($variable->isObject) {
-            $variable->type = $this->findClassByAlias($variable->type);
+            $variable->type = $this->findClassNameByAlias($variable->type);
         }
         $this->variables[$variable->name] = $variable;
     }
@@ -49,11 +49,17 @@ class Container
         $this->namespaces[] = $n;
     }
 
+
+
+    public function findClassNameByAlias($alias) {
+        $o =  $this->findClassByAlias($alias);
+        return $o ? $o->name : $alias;
+    }
     public function findClassByAlias($alias) {
         foreach ($this->importClasses as $n) {
             if($n->alias === $alias)
-                return $n->name;
+                return $n;
         }
-        return$alias;
+        return null;
     }
 }

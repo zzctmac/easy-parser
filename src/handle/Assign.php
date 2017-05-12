@@ -53,6 +53,6 @@ class Assign extends Base
      */
     public function getSons()
     {
-
+        return [$this->node->expr];
     }
 }
