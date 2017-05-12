@@ -21,6 +21,9 @@ class Call
      */
     public $class;
     public $isStatic;
+    /**
+     * @var Variable
+     */
     public $object;
     public $isNew;
     public $name;
@@ -54,7 +57,7 @@ class Call
      * @param $isMethod
      * @param $class ImportClass
      * @param $isStatic
-     * @param $object
+     * @param $object Variable
      * @param $isNew
      * @param $name
      * @param $args
@@ -64,6 +67,12 @@ class Call
     {
         return new self($isMethod, $class, $isStatic, $object, $isNew, $name, $args);
     }
+
+    public static function createByFuncCall($name, $args)
+    {
+        return new self(false, false, false, null, false, $name, $args);
+    }
+
 
     /**
      * @param $class ImportClass

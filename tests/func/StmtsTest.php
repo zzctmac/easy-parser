@@ -47,6 +47,9 @@ class StmtsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, $fs[0]->args[0]->name);
         $this->assertEquals(true, $fs[1]->isMethod);
         $this->assertEquals('zzc', $fs[1]->args[0]->name);
-
+        $this->assertEquals('y', $fs[1]->object->name);
+        $this->assertEquals('c\\h\\Y', $fs[1]->object->type);
+        $this->assertEquals(2, $fs[1]->args[1]->name);
+        $this->assertEquals('g\\ed', $fs[2]->name);
     }
 }
