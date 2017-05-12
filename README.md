@@ -1,1 +1,2 @@
 [![Build Status](https://www.travis-ci.org/zzctmac/easy-parser.svg?branch=master)](https://www.travis-ci.org/zzctmac/easy-parser)
+[![Coverage Status](https://coveralls.io/repos/github/zzctmac/easy-parser/badge.svg?branch=master)](https://coveralls.io/github/zzctmac/easy-parser?branch=master)
