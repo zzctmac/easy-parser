@@ -90,6 +90,10 @@ class Call
         return self::create(true, $class, false, $object, false, $name, $args);
     }
 
+    public static function createByStaticCall($class, $name, $args)
+    {
+        return self::create(false, $class, true, null, false, $name, $args);
+    }
 
 
 }

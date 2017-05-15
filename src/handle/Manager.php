@@ -16,7 +16,8 @@ class Manager
         Assign::class,
         New_::class,
         MethodCall::class,
-        FuncCall::class
+        FuncCall::class,
+        StaticCall::class
     ];
     /**
      * @return Manager

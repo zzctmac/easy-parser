@@ -26,7 +26,6 @@ class MethodCall extends WithArg
      */
     public function handle()
     {
-
         $oN = $this->node->var->name;
         $name = $this->node->name;
         $args = parent::handle();
@@ -45,6 +44,10 @@ class MethodCall extends WithArg
      */
     public function getSons()
     {
-        return [];
+        $sons = [];
+        if($this->node->var instanceof Node\Expr\StaticCall) {
+            $sons[] = $this->node->var;
+        }
+        return $sons;
     }
 }
