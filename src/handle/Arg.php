@@ -32,7 +32,9 @@ class Arg extends Base implements ISonKeys
             $name = $this->node->value->value;
         }
         if($this->node->value instanceof Node\Expr\BinaryOp) {
-
+            $arg = BinaryOp::tryFolder($this->node->value);
+            if($arg != null)
+                return $arg;
         }
 
         return BeanArg::create($type, $name);

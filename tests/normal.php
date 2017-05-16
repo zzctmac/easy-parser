@@ -11,6 +11,6 @@ g\ed(3);
 
 Y::instace('A', A::g(), 3+2, $y->g(), $y->d()+1)->e();
 $b = 1;
-$a = $b + A::tt();
+$a = $b + A::tt(1);
 
 echo $a;

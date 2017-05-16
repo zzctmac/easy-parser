@@ -17,7 +17,8 @@ class Manager
         New_::class,
         MethodCall::class,
         FuncCall::class,
-        StaticCall::class
+        StaticCall::class,
+        BinaryOp::class
     ];
 
     /**

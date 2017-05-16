@@ -19,12 +19,26 @@ class BinaryOp extends Base
     protected $node;
     protected $class = ExprBinaryOp::class;
 
+    public function hit($node)
+    {
+        $res = $node instanceof ExprBinaryOp;
+        if($res){
+            $this->node = $node;
+        }
+        return $res;
+    }
+
+
     /**
      * @return mixed
      */
     public function handle()
     {
-        // TODO: Implement handle() method.
+
+        /*if(self::tryFolder($this->node))
+            return;*/
+
+
     }
 
     /**
@@ -32,7 +46,14 @@ class BinaryOp extends Base
      */
     public function getSons()
     {
-        // TODO: Implement getSons() method.
+        $sons = [];
+        if(self::tryFolder($this->node))
+            return $sons;
+        if(!$this->node->left instanceof ExprBinaryOp)
+            $sons[] = $this->node->left;
+        if(!$this->node->right instanceof ExprBinaryOp)
+            $sons[] = $this->node->right;
+        return $sons;
     }
 
     /**

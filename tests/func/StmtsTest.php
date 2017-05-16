@@ -59,6 +59,8 @@ class StmtsTest extends PHPUnit_Framework_TestCase
         $fs = $this->stmtParse->getAllUsedFunctions();
         $this->assertEquals(true, $fs[5]->isStatic);
         $this->assertEquals(true, $fs[6]->isMethod);
-
+        $this->assertEquals('d', $fs[7]->name);
+        $this->assertEquals('tt', $fs[8]->name);
+        $this->assertEquals(true, $fs[8]->isStatic);
     }
 }
