@@ -7,6 +7,7 @@
 
 namespace st\handle;
 
+use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall as ExprFuncCall;
 use st\bean\Call;
 
@@ -33,6 +34,7 @@ class FuncCall extends WithArg
      */
     public function getSons()
     {
-        return [];
+        $sons = parent::getSons();
+        return $sons;
     }
 }

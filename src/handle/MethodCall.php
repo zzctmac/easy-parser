@@ -44,7 +44,7 @@ class MethodCall extends WithArg
      */
     public function getSons()
     {
-        $sons = [];
+        $sons = parent::getSons();
         if($this->node->var instanceof Node\Expr\StaticCall) {
             $sons[] = $this->node->var;
         }
