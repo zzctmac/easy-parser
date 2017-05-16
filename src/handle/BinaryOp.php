@@ -73,7 +73,7 @@ class BinaryOp extends Base
                 $name = $lv + $rv;
                 break;
             case ExprBinaryOp\Div::class:
-                $name = $lv + $rv;
+                $name = $lv / $rv;
                 break;
             case ExprBinaryOp\Mul::class:
                 $name = $lv * $rv;

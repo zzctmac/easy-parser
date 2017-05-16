@@ -27,6 +27,17 @@ class FolderTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(3, $arg->name);
     }
 
+    public function test_div()
+    {
+        $code = '<?php  1 / 2; ?>';
+        $nodes = $this->parser->parse($code);
+        $op = $nodes[0];
+        $arg = \st\handle\BinaryOp::tryFolder($op);
+        $this->assertEquals(0.5, $arg->name);
+    }
+
+
+
     public function test_param_3()
     {
         $code = '<?php  1 + 2 + 3; ?>';
@@ -56,11 +67,11 @@ class FolderTest extends PHPUnit_Framework_TestCase
 
     public function test_nature()
     {
-        $code = '<?php  1 + 2 - 3 . "zzc"; ?>';
+        $code = '<?php  1 + 2 - 3 * 3 / 2 . "zzc"; ?>';
         $nodes = $this->parser->parse($code);
         $op = $nodes[0];
         $arg = \st\handle\BinaryOp::tryFolder($op);
-        $this->assertEquals("0zzc", $arg->name);
+        $this->assertEquals("-1.5zzc", $arg->name);
     }
 
 
