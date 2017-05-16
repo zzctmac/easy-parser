@@ -39,7 +39,7 @@ class StmtsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('c\\h\\Y', $vars['y']->type);
     }
 
-    public function test_call()
+    public function test_call_0()
     {
         $fs = $this->stmtParse->getAllUsedFunctions();
         $this->assertEquals(true, $fs[0]->isNew);
@@ -53,4 +53,11 @@ class StmtsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('g\\ed', $fs[2]->name);
         $this->assertEquals(1, $fs[4]->isStatic);
     }
+
+    public function test_call_1()
+    {
+        $fs = $this->stmtParse->getAllUsedFunctions();
+        $this->assertEquals(true, $fs[5]->isStatic);
+    }
+
 }

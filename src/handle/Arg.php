@@ -12,7 +12,7 @@ use PhpParser\Node;
 use PhpParser\Node\Arg as NodeArg;
 use st\bean\Arg as BeanArg;
 
-class Arg extends Base
+class Arg extends Base implements ISonKeys
 {
     /**
      * @var NodeArg
@@ -35,13 +35,7 @@ class Arg extends Base
         return BeanArg::create($type, $name);
     }
 
-    /**
-     * @return Node[]
-     */
-    public function getSons()
-    {
-
-    }
+    use SonHelper;
 
     /**
      * @param NodeArg $node
@@ -49,5 +43,10 @@ class Arg extends Base
     public function setNode($node)
     {
         $this->node = $node;
+    }
+
+    public function getAllKeys()
+    {
+        return ['value'];
     }
 }

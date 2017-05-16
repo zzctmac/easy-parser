@@ -50,6 +50,15 @@ abstract class WithArg extends Base
      */
     public function getSons()
     {
-        // TODO: Implement getSons() method.
+        $this->setNodeArgs();
+        $argSons = [];
+        foreach ($this->nodeArgs as $arg) {
+            $this->argHandler->setNode($arg);
+            $temp = $this->argHandler->getSons();
+            if(empty($temp))
+                continue;
+            $argSons = array_merge($argSons, $temp);
+        }
+        return $argSons;
     }
 }

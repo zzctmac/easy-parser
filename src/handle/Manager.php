@@ -19,6 +19,7 @@ class Manager
         FuncCall::class,
         StaticCall::class
     ];
+
     /**
      * @return Manager
      */
@@ -48,6 +49,18 @@ class Manager
 
     }
 
+    public function hit($stmt)
+    {
+        if(!is_object($stmt))
+            return false;
+        foreach ($this->handlers as $handler) {
+            if($handler->hit($stmt)) {
+                return $handler;
+            }
+        }
+        return false;
+    }
+
     public function handle($stmts)
     {
         if(!is_array($stmts))
@@ -55,14 +68,13 @@ class Manager
         if(count($stmts) == 0)
             return ;
         foreach ($stmts as $stmt) {
-            foreach ($this->handlers as $handler) {
-                if($handler->hit($stmt)) {
-                    $handler->handle();
-                    $sons = $handler->getSons();
-                    if($sons != null)
-                        $this->handle($sons);
-                }
-            }
+            $handler = $this->hit($stmt);
+            if($handler === false)
+                continue;
+            $handler->handle();
+            $sons = $handler->getSons();
+            if($sons != null)
+                $this->handle($sons);
         }
     }
 

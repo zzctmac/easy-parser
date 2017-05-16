@@ -7,6 +7,7 @@
 
 namespace st\handle;
 
+use PhpParser\Node;
 use PhpParser\Node\Expr\StaticCall as ExprStaticCall;
 use st\bean\Call;
 
@@ -34,7 +35,9 @@ class StaticCall extends WithArg
      */
     public function getSons()
     {
-        return [];
+
+        $sons = parent::getSons();
+        return $sons;
     }
 
 }
