@@ -14,10 +14,9 @@ use st\bean\Variable;
 
 interface IBase
 {
-    public function setFile($file);
 
     /**
-     * @return Namespace_
+     * @return null|string
      */
     public function getNameSpace();
     public function getAllUsedFunctions();
@@ -31,15 +30,4 @@ interface IBase
      * @return ImportClass[]
      */
     public function getAllImportClasses();
-
-    /**
-     * @param $alias
-     * @return ImportClass|null
-     */
-    public function getClassNameByAlias($alias);
-    /**
-     * @param $var
-     * @return ImportClass|null
-     */
-    public function getClassNameByVar($var);
 }

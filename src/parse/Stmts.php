@@ -19,9 +19,9 @@ class Stmts extends Base
      * @var Manager
      */
     protected $manager;
-    public function __construct($file, $parser)
+    public function __construct($nodes)
     {
-        parent::__construct($file, $parser);
+        parent::__construct($nodes);
         $this->manager = Manager::create();
         $this->manager->handle($this->parserNodes);
 
@@ -56,15 +56,5 @@ class Stmts extends Base
     public function getAllImportClasses()
     {
         return $this->manager->getContainer()->importClasses;
-    }
-
-    public function getClassNameByAlias($alias)
-    {
-        // TODO: Implement getClassNameByAlias() method.
-    }
-
-    public function getClassNameByVar($var)
-    {
-        // TODO: Implement getClassNameByVar() method.
     }
 }

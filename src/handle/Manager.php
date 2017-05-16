@@ -22,11 +22,15 @@ class Manager
     ];
 
     /**
+     * @param bool $n
      * @return Manager
      */
-    public static function create()
+    public static function create($n = false)
     {
-        return new self();
+        static $ins;
+        if($ins == null || $n == true)
+            $ins = new self();
+        return $ins;
     }
 
     /**
