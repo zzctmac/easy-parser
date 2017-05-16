@@ -31,6 +31,9 @@ class Arg extends Base implements ISonKeys
             $type = BeanArg::SCALAR;
             $name = $this->node->value->value;
         }
+        if($this->node->value instanceof Node\Expr\BinaryOp) {
+
+        }
 
         return BeanArg::create($type, $name);
     }
