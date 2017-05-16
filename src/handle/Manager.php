@@ -22,14 +22,15 @@ class Manager
     ];
 
     /**
+     * @param null $lc
      * @param bool $n
      * @return Manager
      */
-    public static function create($n = false)
+    public static function create($lc = null, $n = false)
     {
         static $ins;
         if($ins == null || $n == true)
-            $ins = new self();
+            $ins = new self($lc);
         return $ins;
     }
 
@@ -44,10 +45,11 @@ class Manager
 
     /**
      * Manager constructor.
+     * @param $localContainer
      */
-    private function __construct()
+    private function __construct($localContainer)
     {
-        $this->container = new Container();
+        $this->container = GlobalContainer::create($localContainer);
         foreach (self::$classes as $class) {
             $this->handlers[] = new $class($this->container);
         }

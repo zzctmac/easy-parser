@@ -17,7 +17,7 @@ class StmtsTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        \st\handle\Manager::create(true);
+        \st\handle\GlobalContainer::destroy();
         $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);
         $this->stmtParse = new \st\parse\Stmts($this->parser->parse(file_get_contents(__DIR__ . '/../normal.php')));
     }

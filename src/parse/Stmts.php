@@ -11,6 +11,7 @@ namespace st\parse;
 
 
 use st\bean\Call;
+use st\handle\Container;
 use st\handle\Manager;
 
 class Stmts extends Base
@@ -19,10 +20,17 @@ class Stmts extends Base
      * @var Manager
      */
     protected $manager;
+
+    /**
+     * @var $container;
+     */
+    protected $container;
+
     public function __construct($nodes)
     {
         parent::__construct($nodes);
-        $this->manager = Manager::create();
+        $this->container = new Container();
+        $this->manager = Manager::create($this->container, true);
         $this->manager->handle($this->parserNodes);
 
     }
@@ -44,13 +52,13 @@ class Stmts extends Base
      */
     public function getAllUsedFunctions()
     {
-        $ns =  $this->manager->getContainer()->calls;
+        $ns =  $this->container->calls;
         return $ns;
     }
 
     public function getAllVars()
     {
-        return $this->manager->getContainer()->variables;
+        return $this->container->variables;
     }
 
     public function getAllImportClasses()

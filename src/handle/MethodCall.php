@@ -29,8 +29,8 @@ class MethodCall extends WithArg
         $oN = $this->node->var->name;
         $name = $this->node->name;
         $args = parent::handle();
-        if(isset($this->container->variables[$oN])) {
-            $object = $this->container->variables[$oN];
+        if(isset($this->container->getLocalContainer()->variables[$oN])) {
+            $object = $this->container->getLocalContainer()->variables[$oN];
             $class = $object->type;
         } else {
             $object = null;

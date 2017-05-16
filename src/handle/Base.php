@@ -19,7 +19,7 @@ abstract class Base implements IBase
     protected $class;
 
     /**
-     * @var Container
+     * @var GlobalContainer
      */
     protected $container;
 
@@ -27,7 +27,7 @@ abstract class Base implements IBase
      * Base constructor.
      * @param Container $container
      */
-    public function __construct(Container $container)
+    public function __construct(GlobalContainer $container)
     {
         $this->container = $container;
     }
