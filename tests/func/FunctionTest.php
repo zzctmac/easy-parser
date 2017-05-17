@@ -43,4 +43,17 @@ class FunctionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(true, $vs[0]->isObject);
         $this->assertEquals('ff', $funcParse->getNameSpace());
     }
+
+    public function test_param()
+    {
+        $funcParse = new \st\parse\Func($this->nodes[0]->stmts[2]);
+        $ps = $funcParse->getParams();
+        $this->assertEquals('d', $ps[0]->name);
+        $this->assertEquals(\st\bean\Arg::SCALAR, $ps[0]->type);
+        $this->assertEquals('c', $ps[1]->name);
+        $this->assertEquals(\st\bean\Arg::SCALAR, $ps[1]->type);
+        $this->assertEquals('ee', $ps[2]->name);
+        $this->assertEquals('c\\h\\Y', $ps[2]->type->name);
+    }
+
 }

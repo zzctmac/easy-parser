@@ -17,6 +17,9 @@ class Arg
     const OP = 3;
     const METHOD_CALL = 4;
 
+    /**
+     * @var string|ImportClass
+     */
     public $type;
     public $name;
 

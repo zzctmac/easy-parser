@@ -8,75 +8,61 @@
 namespace st\parse;
 
 
-use st\bean\ImportClass;
-use st\bean\Variable;
 
 use PhpParser\Node\Stmt\Function_ as StmtFunction;
+use st\bean\Arg;
+use st\handle\Manager;
+use st\handle\Param;
 
-class Func implements IBase,IFunc
+class Func extends Hit implements IFunc
 {
-
+    protected $name;
 
     /**
      * @var StmtFunction
      */
     protected $root;
 
-    /**
-     * @var Stmts
-     */
-    protected $stmtParse;
-
-    protected $name;
-
-    /**
-     * Func constructor.
-     * @param $root StmtFunction
-     */
-    public function __construct($root)
+    public function __construct(StmtFunction $root)
     {
-        $this->root = $root;
-        $this->stmtParse = new Stmts($root->stmts);
+        parent::__construct($root);
         $this->name = $root->name;
-    }
-
-
-    /**
-     * @return null|string
-     */
-    public function getNameSpace()
-    {
-        return $this->stmtParse->getNameSpace();
-    }
-
-    public function getAllUsedFunctions()
-    {
-        return $this->stmtParse->getAllUsedFunctions();
+        $this->initArgs();
     }
 
     /**
-     * @return Variable[]
+     * @var Arg[]
      */
-    public function getAllVars()
+    protected $params;
+
+    protected function initArgs()
     {
-        return $this->stmtParse->getAllVars();
+        $handler = new Param(Manager::create()->getContainer());
+        $params = $this->root->getParams();
+        foreach ($params as $param) {
+            $handler->hit($param);
+            $this->params[] = $handler->handle();
+        }
     }
 
-    /**
-     * @return ImportClass[]
-     */
-    public function getAllImportClasses()
-    {
-        return $this->stmtParse->getAllImportClasses();
-    }
 
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * @return Arg[]
+     */
     public function getParams()
     {
-        // TODO: Implement getParams() method.
+        return $this->params;
+    }
+
+    function hit($node)
+    {
+        if($node instanceof StmtFunction)
+            return true;
+        return false;
     }
 }
