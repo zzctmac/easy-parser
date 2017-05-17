@@ -6,6 +6,7 @@
  */
 
 namespace st\parse;
+use PhpParser\Node\Stmt;
 use st\bean\ImportClass;
 use st\bean\Variable;
 
@@ -25,7 +26,7 @@ abstract class Hit implements IBase
 
     /**
      * Func constructor.
-     * @param $root StmtFunction
+     * @param $root Stmt
      */
     public function __construct($root)
     {
