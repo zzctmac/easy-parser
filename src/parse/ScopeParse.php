@@ -11,7 +11,7 @@ use st\bean\ImportClass;
 use st\bean\Variable;
 
 
-abstract class Hit implements IBase
+abstract class ScopeParse implements IBase
 {
 
     protected $root;
@@ -62,6 +62,4 @@ abstract class Hit implements IBase
     {
         return $this->stmtParse->getAllImportClasses();
     }
-
-    abstract function hit($node);
 }

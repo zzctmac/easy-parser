@@ -12,7 +12,7 @@ use PhpParser\Node\Stmt\ClassMethod;
 use st\handle\Manager;
 use st\handle\Method;
 
-class Class_ extends Hit implements IClass_
+class Class_ extends ScopeParse implements IClass_
 {
 
     /**
@@ -60,13 +60,6 @@ class Class_ extends Hit implements IClass_
     }
 
 
-
-    function hit($node)
-    {
-        if($node instanceof StmtClass)
-            return true;
-        return false;
-    }
 
     public function getDoc()
     {

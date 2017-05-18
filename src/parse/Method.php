@@ -29,12 +29,5 @@ class Method extends Func
         return $this->visitType;
     }
 
-    function hit($node)
-    {
-        if($node instanceof StmtClassMethod)
-            return true;
-        return false;
-    }
-
 
 }

@@ -16,7 +16,7 @@ use st\bean\Attr;
 use st\handle\Manager;
 use st\handle\Param;
 
-class Func extends Hit implements IFunc
+class Func extends ScopeParse implements IFunc
 {
     protected $name;
 
@@ -59,13 +59,6 @@ class Func extends Hit implements IFunc
     public function getParams()
     {
         return $this->params;
-    }
-
-    function hit($node)
-    {
-        if($node instanceof StmtFunction)
-            return true;
-        return false;
     }
 
     /**
