@@ -49,6 +49,7 @@ class ClassTest extends PHPUnit_Framework_TestCase
         $ms = $cp->getMethods();
         $this->assertEquals('invoke', $ms['invoke']->getName());
         $fs = $ms['invoke']->getAllUsedFunctions();
+        $this->assertEquals(1, $ms['invoke']->getVisitType());
         $this->assertEquals(false, $fs[0]->isNew);
         $this->assertEquals('t', $fs[0]->name);
         $this->assertEquals('c\A', $fs[0]->class->name);

@@ -9,7 +9,6 @@ namespace st\parse;
 
 use PhpParser\Node\Stmt\Class_ as StmtClass;
 use PhpParser\Node\Stmt\ClassMethod;
-use st\handle\Container;
 use st\handle\Manager;
 use st\handle\Method;
 
