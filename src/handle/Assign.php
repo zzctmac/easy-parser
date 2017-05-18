@@ -33,17 +33,7 @@ class Assign extends Base
             $type = $this->node->expr->class->toString();
             $isObject = true;
         } else if($this->node->expr instanceof Node\Scalar){
-            switch (get_class($this->node->expr)) {
-                case Node\Scalar\LNumber::class:
-                case Node\Scalar\DNumber::class:
-                    $type = 'number';
-                    break;
-                case Node\Scalar\String_::class:
-                    $type = 'string';
-                    break;
-                default:
-                    break;
-            }
+           $type = Variable::getTypeByScalar($this->node->expr);
         }
         $this->container->addVariable(Variable::create($name, $type, $isObject));
     }

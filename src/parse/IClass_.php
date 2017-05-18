@@ -13,4 +13,7 @@ interface IClass_
     public function getDoc();
     public function getAttributes();
     public function getMethods();
+    public function getName();
+    public function getParentName();
+    public function getImpls();
 }

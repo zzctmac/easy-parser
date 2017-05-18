@@ -54,6 +54,12 @@ class GlobalContainer extends Container
         $this->container->addVariable($variable);
     }
 
+    public function addAttr(\st\bean\Attr $attr)
+    {
+        $this->container->addAttr($attr);
+    }
+
+
     public function addImportClasses(ImportClass $importClass)
     {
         $this->container->addImportClasses($importClass);

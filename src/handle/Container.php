@@ -29,6 +29,17 @@ class Container
      */
     public $namespaces = [];
 
+    /**
+     * @var \st\bean\Attr[]
+     */
+    public $attrs = [];
+
+    public function addAttr(\st\bean\Attr $attr)
+    {
+        $this->attrs[] = $attr;
+    }
+
+
     public function addCall(Call $call)
     {
         $this->calls[] = $call;

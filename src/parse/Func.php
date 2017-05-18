@@ -9,8 +9,10 @@ namespace st\parse;
 
 
 
+use PhpParser\Node\FunctionLike as StmtFunctionLike;
 use PhpParser\Node\Stmt\Function_ as StmtFunction;
 use st\bean\Arg;
+use st\bean\Attr;
 use st\handle\Manager;
 use st\handle\Param;
 
@@ -23,7 +25,7 @@ class Func extends Hit implements IFunc
      */
     protected $root;
 
-    public function __construct(StmtFunction $root)
+    public function __construct(StmtFunctionLike $root)
     {
         parent::__construct($root);
         $this->name = $root->name;
@@ -64,5 +66,13 @@ class Func extends Hit implements IFunc
         if($node instanceof StmtFunction)
             return true;
         return false;
+    }
+
+    /**
+     * @return Attr[]
+     */
+    public function getAttributes()
+    {
+        return [];
     }
 }

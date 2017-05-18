@@ -10,6 +10,7 @@ namespace st\handle;
 use PhpParser\Node;
 use PhpParser\Node\Expr\StaticCall as ExprStaticCall;
 use st\bean\Call;
+use st\bean\ImportClass;
 
 class StaticCall extends WithArg
 {
@@ -24,7 +25,12 @@ class StaticCall extends WithArg
      */
     public function handle()
     {
-       $class = $this->container->findClassByAlias($this->node->class->toString());
+        $cn = $this->node->class->toString();
+       $class = $this->container->findClassByAlias($cn);
+       if($class == null) {
+           $class = ImportClass::create($cn, $cn);
+           $this->container->addImportClasses($class);
+       }
        $name = $this->node->name;
        $args = parent::handle();
        $this->container->addCall(Call::createByStaticCall($class, $name, $args));

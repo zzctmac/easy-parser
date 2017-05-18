@@ -10,7 +10,6 @@ use PhpParser\Node\Stmt;
 use st\bean\ImportClass;
 use st\bean\Variable;
 
-use PhpParser\Node\Stmt\Function_ as StmtFunction;
 
 abstract class Hit implements IBase
 {

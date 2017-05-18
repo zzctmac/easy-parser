@@ -9,7 +9,6 @@ namespace st\parse;
 
 
 use st\bean\ImportClass;
-use st\bean\Namespace_;
 use st\bean\Variable;
 
 interface IBase
@@ -30,4 +29,5 @@ interface IBase
      * @return ImportClass[]
      */
     public function getAllImportClasses();
+
 }

@@ -27,8 +27,31 @@ class ClassTest extends PHPUnit_Framework_TestCase
         $this->stmtParse = new \st\parse\Stmts($this->nodes);
     }
 
-    public function test_normal()
+    public function test_name()
     {
-        $cp = new \st\parse\Class_($this->nodes[0]->stmts[0]);
+        $cp = new \st\parse\Class_($this->nodes[0]->stmts[1]);
+        $this->assertEquals('Info\\Test', $cp->getName());
+        $this->assertEquals('co\\Service', $cp->getParentName());
     }
+
+    public function test_attr()
+    {
+        $cp = new \st\parse\Class_($this->nodes[0]->stmts[1]);
+        $attrs = $cp->getAttributes();
+        $this->assertEquals('r', $attrs[0]->name);
+        $this->assertEquals(1, $attrs[0]->defaultValue['a']);
+
+    }
+
+    public function test_method()
+    {
+        $cp = new \st\parse\Class_($this->nodes[0]->stmts[1]);
+        $ms = $cp->getMethods();
+        $this->assertEquals('invoke', $ms['invoke']->getName());
+        $fs = $ms['invoke']->getAllUsedFunctions();
+        $this->assertEquals(false, $fs[0]->isNew);
+        $this->assertEquals('t', $fs[0]->name);
+        $this->assertEquals('c\A', $fs[0]->class->name);
+    }
+
 }

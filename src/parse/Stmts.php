@@ -10,6 +10,7 @@ namespace st\parse;
 
 
 
+use st\bean\Attr;
 use st\bean\Call;
 use st\handle\Container;
 use st\handle\Manager;
@@ -64,5 +65,14 @@ class Stmts extends Base
     public function getAllImportClasses()
     {
         return $this->manager->getContainer()->importClasses;
+    }
+
+
+    /**
+     * @return Container
+     */
+    public function getContainer()
+    {
+        return $this->container;
     }
 }

@@ -22,7 +22,6 @@ class New_ extends WithArg
     protected $class = ExprNew::class;
 
     /**
-     * @return mixed
      */
     public function handle()
     {
