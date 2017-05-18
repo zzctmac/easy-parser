@@ -46,9 +46,13 @@ class Class_ extends ScopeParse implements IClass_
         }
 
         //parent name
-        $pn =  $this->root->extends->toString();
-        $pn = $container->findClassNameByAlias($pn);
-        $this->parentName = $pn;
+        if($this->root->extends != null) {
+            $pn = $this->root->extends->toString();
+            $pn = $container->findClassNameByAlias($pn);
+            $this->parentName = $pn;
+        } else {
+            $this->parentName = null;
+        }
 
         //method
         foreach ($this->root->stmts as $stmt) {

@@ -42,6 +42,9 @@ abstract class ScopeParse implements IBase
         return $this->stmtParse->getNameSpace();
     }
 
+    /**
+     * @return \st\bean\Call[]
+     */
     public function getAllUsedFunctions()
     {
         return $this->stmtParse->getAllUsedFunctions();

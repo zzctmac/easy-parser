@@ -30,7 +30,7 @@ class Assign extends Base
         $type = null;
         $isObject = false;
         if($this->node->expr instanceof Node\Expr\New_) {
-            $type = $this->node->expr->class->toString();
+            $type = $this->container->findClassNameByAlias($this->node->expr->class->toString());
             $isObject = true;
         } else if($this->node->expr instanceof Node\Scalar){
            $type = Variable::getTypeByScalar($this->node->expr);
