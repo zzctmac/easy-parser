@@ -16,6 +16,7 @@ class Arg
     const STATIC_CALL = 2;
     const OP = 3;
     const METHOD_CALL = 4;
+    const ARRAY_ = 5;
 
     /**
      * @var string|ImportClass

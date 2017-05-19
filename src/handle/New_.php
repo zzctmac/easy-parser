@@ -11,6 +11,7 @@ namespace st\handle;
 use PhpParser\Node;
 use PhpParser\Node\Expr\New_ as ExprNew;
 use st\bean\Call;
+use st\bean\ImportClass;
 
 class New_ extends WithArg
 {
@@ -25,7 +26,12 @@ class New_ extends WithArg
      */
     public function handle()
     {
-        $call = Call::createByNew($this->container->findClassByAlias($this->node->class->toString()), parent::handle());
+        $cn = $this->node->class->toString();
+        $class = $this->container->findClassByAlias($cn);
+        if($class == null) {
+            $class = ImportClass::create($cn, $cn);
+        }
+        $call = Call::createByNew($class, parent::handle());
         $this->container->addCall($call);
     }
 
@@ -34,7 +40,7 @@ class New_ extends WithArg
      */
     public function getSons()
     {
-        //todo: sons
-        return [];
+        $sons = parent::getSons();
+        return $sons;
     }
 }

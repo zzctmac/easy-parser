@@ -19,7 +19,8 @@ class Manager
         FuncCall::class,
         StaticCall::class,
         BinaryOp::class,
-        Attr::class
+        Attr::class,
+        Array_::class
     ];
 
     /**

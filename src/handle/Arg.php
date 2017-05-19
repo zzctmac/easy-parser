@@ -36,6 +36,12 @@ class Arg extends Base implements ISonKeys
             if($arg != null)
                 return $arg;
         }
+        if($this->node->value instanceof Node\Expr\Array_) {
+            $ha = new Array_(Manager::create()->getContainer());
+            $ha->hit($this->node->value);
+            $name = $ha->handle();
+            $type = BeanArg::ARRAY_;
+        }
 
         return BeanArg::create($type, $name);
     }

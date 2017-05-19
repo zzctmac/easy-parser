@@ -25,7 +25,7 @@ abstract class Base implements IBase
 
     /**
      * Base constructor.
-     * @param Container $container
+     * @param Container|GlobalContainer $container
      */
     public function __construct(GlobalContainer $container)
     {
