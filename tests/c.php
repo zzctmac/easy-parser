@@ -16,6 +16,7 @@ class Test extends Service
 {
     protected $r = ['a'=>1];
     private $f = 1;
+    private $fff;
     public $hh;
     public function invoke()
     {

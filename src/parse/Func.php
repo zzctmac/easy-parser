@@ -60,12 +60,4 @@ class Func extends ScopeParse implements IFunc
     {
         return $this->params;
     }
-
-    /**
-     * @return Attr[]
-     */
-    public function getAttributes()
-    {
-        return [];
-    }
 }
