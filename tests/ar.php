@@ -5,4 +5,4 @@
  * Time: 13:59
  */
 
-$a = new AAA(['a'=>1, 'c'=>2]);
+$a = new AAA(['a'=>1, 'c'=>2, 'd'=>new BBB()]);
