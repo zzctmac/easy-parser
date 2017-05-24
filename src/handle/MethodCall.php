@@ -27,6 +27,9 @@ class MethodCall extends WithArg
     public function handle()
     {
         $oN = $this->node->var->name;
+        if(is_object($oN)) {
+            $oN = $oN->toString();
+        }
         $name = $this->node->name;
         $args = parent::handle();
         if(isset($this->container->getLocalContainer()->variables[$oN])) {
