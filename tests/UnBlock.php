@@ -41,6 +41,14 @@ class UnBlock extends Service
             'status' =>  0
         ], sprintf('id = %d', $relation['id']));
 
+        switch (1) {
+            case 2:
+                echo 1;
+                break;
+            default:
+                break;
+        }
+
         redis('user')->zDelete(sprintf('ZSET:U:BLOCK:%d', $uid), $blockUid);
         return $this->send();
     }
