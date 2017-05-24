@@ -9,6 +9,7 @@ namespace st\parse;
 
 use PhpParser\Node\Stmt\Class_ as StmtClass;
 use PhpParser\Node\Stmt\ClassMethod;
+use st\common\DocParser;
 use st\handle\Manager;
 use st\handle\Method;
 
@@ -37,6 +38,11 @@ class Class_ extends ScopeParse implements IClass_
      * @var string[]
      */
     protected $impls;
+
+    /**
+     * @var []
+     */
+    protected $doc;
 
     protected function init()
     {
@@ -73,13 +79,25 @@ class Class_ extends ScopeParse implements IClass_
         foreach ($is as $i) {
             $this->impls[] = $container->findClassNameByAlias($i->toString());
         }
+
+        //doc
+        $doc = $this->root->getDocComment();
+        if($doc != null)
+            $this->doc = $this->parseDoc($doc->getText());
+        else
+            $this->doc = [];
+
     }
 
+    use DocParser;
 
 
+    /**
+     * @return []
+     */
     public function getDoc()
     {
-        // TODO: Implement getDoc() method.
+        return $this->doc;
     }
 
     /**

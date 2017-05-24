@@ -62,4 +62,14 @@ class Class1Test extends PHPUnit_Framework_TestCase
         $this->assertEquals(true, $f->isNew);
     }
 
+    public function test_doc()
+    {
+        $cp = new \st\parse\Class_($this->nodes[1]);
+        $doc = $cp->getDoc();
+        $this->assertEquals('test', $doc['name']);
+        $this->assertEquals('UserSvr.Relation.FixFollow', $doc['service']);
+
+    }
+
+
 }

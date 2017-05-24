@@ -50,6 +50,9 @@ class FileClassTest extends PHPUnit_Framework_TestCase
 
         $f = $fs[2];
         $this->assertEquals(true, $f->isNew);
+        $doc = $cp->getDoc();
+        $this->assertEquals('test', $doc['name']);
+        $this->assertEquals('UserSvr.Relation.FixFollow', $doc['service']);
     }
 
     public function test_c3()
