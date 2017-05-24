@@ -60,6 +60,8 @@ class FileClassTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, $attrs[0]->defaultValue);
         $this->assertEquals('bb', $attrs[0]->name);
         $this->assertEquals(1, count($attrs));
+        $impls = $cp->getImpls();
+        $this->assertEquals('c\\B', $impls[0]);
     }
 
 

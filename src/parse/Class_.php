@@ -33,6 +33,11 @@ class Class_ extends ScopeParse implements IClass_
      */
     protected $methods;
 
+    /**
+     * @var string[]
+     */
+    protected $impls;
+
     protected function init()
     {
         $container = Manager::create()->getContainer();
@@ -60,6 +65,13 @@ class Class_ extends ScopeParse implements IClass_
                 $mh = new \st\parse\Method($stmt);
                 $this->methods[$mh->getName()] = $mh;
             }
+        }
+
+        // implements
+        $is = $this->root->implements;
+        $this->impls = [];
+        foreach ($is as $i) {
+            $this->impls[] = $container->findClassNameByAlias($i->toString());
         }
     }
 
@@ -98,6 +110,6 @@ class Class_ extends ScopeParse implements IClass_
 
     public function getImpls()
     {
-        // TODO: Implement getImpls() method.
+        return $this->impls;
     }
 }

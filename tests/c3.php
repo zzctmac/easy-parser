@@ -4,7 +4,7 @@
  * Date: 17-5-21
  * Time: 上午8:53
  */
-
-class A {
+use c\B as BB;
+class A implements BB{
     public $bb = 1;
 }
