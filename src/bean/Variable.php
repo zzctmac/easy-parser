@@ -17,6 +17,8 @@ class Variable
     public $type;
     public $isObject;
 
+    const CURRENT_CLASS = 1;
+
     /**
      * Variable constructor.
      * @param $name
@@ -61,5 +63,10 @@ class Variable
         if($node instanceof Array_)
             return 'array';
         return null;
+    }
+
+    public static function createThis()
+    {
+        return self::create('this', self::CURRENT_CLASS, true);
     }
 }

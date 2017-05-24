@@ -11,6 +11,7 @@ namespace st\handle;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall as ExprMethodCall;
 use st\bean\Call;
+use st\bean\Variable;
 
 class MethodCall extends WithArg
 {
@@ -36,8 +37,16 @@ class MethodCall extends WithArg
             $object = $this->container->getLocalContainer()->variables[$oN];
             $class = $object->type;
         } else {
-            $object = null;
-            $class = null;
+            if($oN == 'this') {
+                $to = Variable::createThis();
+                $this->container->addVariable($to);
+                $object = $to;
+                $class = Variable::CURRENT_CLASS;
+            } else {
+
+                $object = null;
+                $class = null;
+            }
         }
         $this->container->addCall(Call::createByMethodCall($class, $object, $name, $args));
     }
@@ -48,9 +57,7 @@ class MethodCall extends WithArg
     public function getSons()
     {
         $sons = parent::getSons();
-        if($this->node->var instanceof Node\Expr\StaticCall) {
-            $sons[] = $this->node->var;
-        }
+        $sons[] = $this->node->var;
         return $sons;
     }
 }

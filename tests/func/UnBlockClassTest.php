@@ -23,5 +23,6 @@ class UnBlockClassTest extends PHPUnit_Framework_TestCase
         $invoke = $ms['invoke'];
         $this->assertEquals('invoke', $invoke->getName());
         $ifs = $invoke->getAllUsedFunctions();
+        $this->assertEquals('getData', $ifs[0]->name);
     }
 }

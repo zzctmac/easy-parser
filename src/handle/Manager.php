@@ -20,7 +20,10 @@ class Manager
         StaticCall::class,
         BinaryOp::class,
         Attr::class,
-        Array_::class
+        Array_::class,
+        Scope::class,
+        Switch_::class,
+        Return_::class
     ];
 
     /**
