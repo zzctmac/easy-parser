@@ -27,6 +27,8 @@ class Array_ extends Base
     {
         $arr = [];
         foreach ($this->node->items as $item) {
+            if($item->key == null)
+                continue;
             $k = $item->key->value;
             $v = $item->value;
             if($v instanceof Node\Scalar) {

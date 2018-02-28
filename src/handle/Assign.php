@@ -26,7 +26,7 @@ class Assign extends Base
      */
     public function handle()
     {
-        $name = $this->node->var->name;
+        $name = $this->node->var->name ?? null;
         $type = null;
         $isObject = false;
         if($this->node->expr instanceof Node\Expr\New_) {
