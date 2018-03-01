@@ -70,7 +70,7 @@ class BinaryOp extends Base
             $lv = $lArg->name;
         }else if($stmt->left instanceof Node\Scalar)
         {
-            $lv = $stmt->left->value;
+            $lv = $stmt->left->value ?? null;
         } else {
             return null;
         }
@@ -82,7 +82,7 @@ class BinaryOp extends Base
             $rv = $rArg->name;
         }else if($stmt->right instanceof Node\Scalar)
         {
-            $rv = $stmt->right->value;
+            $rv = $stmt->right->value ?? null;
         } else {
             return null;
         }
