@@ -26,7 +26,7 @@ class Param extends Base
     {
         $name = $this->node->name;
         $type = \st\bean\Arg::SCALAR;
-        if($this->node->type != null)
+        if(is_object($this->node->type))
             $type = $this->container->findClassByAlias($this->node->type->toString());
         return \st\bean\Arg::create($type, $name);
     }

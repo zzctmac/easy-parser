@@ -29,7 +29,7 @@ class Arg extends Base implements ISonKeys
         $name = null;
         if($this->node->value instanceof Node\Scalar) {
             $type = BeanArg::SCALAR;
-            $name = $this->node->value->value;
+            $name = $this->node->value->value ?? null;
         }
         if($this->node->value instanceof Node\Expr\BinaryOp) {
             $arg = BinaryOp::tryFolder($this->node->value);
