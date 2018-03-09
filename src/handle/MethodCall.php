@@ -27,7 +27,7 @@ class MethodCall extends WithArg
      */
     public function handle()
     {
-        $oN = $this->node->var->name;
+        $oN = $this->node->var->name ?? null;
         if(is_object($oN)) {
             $oN = $oN->toString();
         }
